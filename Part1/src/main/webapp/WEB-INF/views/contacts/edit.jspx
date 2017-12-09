@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form"
+     version="2.0">
+
+    <script type="text/javascript">
+        $(function(){
+            $('#birthDate').datepicker({
+                dateFormat: 'yy-mm-dd',
+                changeYear: true
+            });
+
+            $("#BookDescription").ckeditor(
+                    {
+                        toolbar : 'Basic',
+                        uiColor : '#CCCCCC'
+                    }
+            );
+        });
+    </script>
+
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="label_Book_new" var="labelBookNew"/>
+    <spring:message code="label_Book_update" var="labelBookUpdate"/>
+    <spring:message code="label_Book_first_name" var="labelBookFirstName"/>
+    <spring:message code="label_Book_last_name" var="labelBookLastName"/>
+    <spring:message code="label_Book_birth_date" var="labelBookBirthDate"/>
+    <spring:message code="label_Book_description" var="labelBookDescription"/>
+    <spring:message code="label_Book_photo" var="labelBookPhoto"/>
+
+    <spring:eval expression="Book.id == null ? labelBookNew:labelBookUpdate"
+                 var="formTitle"/>
+
+    <h1>${formTitle}</h1>
+
+    <div id="BookUpdate">
+        <form:form modelAttribute="Book" id="BookUpdateForm" method="post"
+                   enctype="multipart/form-data">
+
+        <c:if test="${not empty message}">
+                <div id="message" class="${message.type}">${message.message}</div>
+            </c:if>
+
+            <form:label path="firstName">
+                ${labelBookFirstName}*
+            </form:label>
+            <form:input path="firstName" />
+            <div>
+                <form:errors path="firstName" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="lastName">
+                ${labelBookLastName}*
+            </form:label>
+            <form:input path="lastName" />
+            <div>
+                <form:errors path="lastName" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="birthDate">
+                ${labelBookBirthDate}
+            </form:label>
+            <form:input path="birthDate" id="birthDate"/>
+            <div>
+                <form:errors path="birthDate" cssClass="error" />
+            </div>
+            <p/>
+
+            <form:label path="description">
+                ${labelBookDescription}
+            </form:label>
+            <form:textarea cols="60" rows="8" path="description" id="BookDescription"/>
+            <div>
+                <form:errors path="description" cssClass="error" />
+            </div>
+            <p/>
+
+            <label for="file">
+                ${labelBookPhoto}
+            </label>
+            <input name="file" type="file"/>
+            <p/>
+
+            <form:hidden path="version" />
+
+            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Save</span>
+            </button>
+            <button type="reset" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text">Reset</span>
+            </button>
+        </form:form>
+    </div>
+</div>
