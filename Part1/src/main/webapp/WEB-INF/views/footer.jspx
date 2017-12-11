@@ -9,6 +9,7 @@
     <spring:message code="label_zh_HK" var="labelZhHk"/>
     <spring:url value="/Books" var="homeUrl"/>
 
+
     <a href="${homeUrl}">${homeText}</a> |
     <a href="${homeUrl}?lang=en_US">${labelEnUs}</a> |
     <a href="${homeUrl}?lang=zh_HK">${labelZhHk}</a>

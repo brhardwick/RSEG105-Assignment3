@@ -36,15 +36,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "Book")
 public class Book implements Serializable {
-    private static final long serialVersionUID = 9067534668868356291L;
     
+    private String category_name;
+    private String isbn;
+    private String title;
+    private String publisher;
+    private double price;
 	private Long id;
-    private int version;
-    private String firstName;
-    private String lastName;
-    private DateTime birthDate;
-    private String description;
-    private byte[] photo;
+
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -57,82 +56,111 @@ public class Book implements Serializable {
         this.id = id;
     }
 
-    @Version
-    @Column(name = "VERSION")
-    public int getVersion() {
-        return version;
-    }
 
-    public void setVersion(int version) {
-        this.version = version;
-    }
+    // @NotEmpty(message="{validation.isbn.NotEmpty.message}")
+    // @Size(min=3, max=60, message="{validation.isbn.Size.message}")
+    // @Column(name = "ISBN")
+    // public String getFirstName() {
+    //     return firstName;
+    // }
 
-    @NotEmpty(message="{validation.firstname.NotEmpty.message}")
-    @Size(min=3, max=60, message="{validation.firstname.Size.message}")
-    @Column(name = "FIRST_NAME")
-    public String getFirstName() {
-        return firstName;
-    }
+    // public void setFirstName(String firstName) {
+    //     this.firstName = firstName;
+    // }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    // @NotEmpty(message="{validation.lastname.NotEmpty.message}")
+    // @Size(min=1, max=40, message="{validation.lastname.Size.message}")
+    // @Column(name = "LAST_NAME")
+    // public String getLastName() {
+    //     return lastName;
+    // }
 
-    @NotEmpty(message="{validation.lastname.NotEmpty.message}")
-    @Size(min=1, max=40, message="{validation.lastname.Size.message}")
-    @Column(name = "LAST_NAME")
-    public String getLastName() {
-        return lastName;
-    }
+    // public void setLastName(String lastName) {
+    //     this.lastName = lastName;
+    // }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    // @Column(name = "BIRTH_DATE")
+    // @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    // @DateTimeFormat(iso=ISO.DATE)
+    // public DateTime getBirthDate() {
+    //     return birthDate;
+    // }
 
-    @Column(name = "BIRTH_DATE")
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    @DateTimeFormat(iso=ISO.DATE)
-    public DateTime getBirthDate() {
-        return birthDate;
-    }
+    // public void setBirthDate(DateTime birthDate) {
+    //     this.birthDate = birthDate;
+    // }
 
-    public void setBirthDate(DateTime birthDate) {
-        this.birthDate = birthDate;
-    }
+    // @Column(name = "DESCRIPTION")
+    // public String getDescription() {
+    //     return description;
+    // }
 
-    @Column(name = "DESCRIPTION")
-    public String getDescription() {
-        return description;
-    }
+    // public void setDescription(String description) {
+    //     this.description = description;
+    // }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    // @Basic(fetch= FetchType.LAZY)
+    // @Lob
+    // @Column(name = "PHOTO")
+    // public byte[] getPhoto() {
+    //     return photo;
+    // }
 
-    @Basic(fetch= FetchType.LAZY)
-    @Lob
-    @Column(name = "PHOTO")
-    public byte[] getPhoto() {
-        return photo;
-    }
+    // public void setPhoto(byte[] photo) {
+    //     this.photo = photo;
+    // }
 
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
-    @Transient
-    public String getBirthDateString() {
-        String birthDateString = "";
-        if (birthDate != null)
-            birthDateString = org.joda.time.format.DateTimeFormat
-                    .forPattern("yyyy-MM-dd").print(birthDate);
-        return birthDateString;
-    }
+    // @Transient
+    // public String getBirthDateString() {
+    //     String birthDateString = "";
+    //     if (birthDate != null)
+    //         birthDateString = org.joda.time.format.DateTimeFormat
+    //                 .forPattern("yyyy-MM-dd").print(birthDate);
+    //     return birthDateString;
+    // }
 
     @Override
     public String toString() {
-        return "Book - Id: " + id + ", First name: " + firstName
-                + ", Last name: " + lastName + ", Birthday: " + birthDate
-                + ", Description: " + description;
+        return "Book - Id: " + id;
     }
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getCategory_name() {
+		return category_name;
+	}
+
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
 }

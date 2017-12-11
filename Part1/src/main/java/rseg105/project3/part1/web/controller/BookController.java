@@ -30,8 +30,7 @@ import javax.servlet.http.Part;
 import javax.validation.Valid;
 import rseg105.project3.part1.domain.*;
 import rseg105.project3.part1.service.*;
-import rseg105.project3.part1.*;
-import rseg105.project3.part1.web.form.*;
+import rseg105.project3.part1.web.form.BookGrid;
 import rseg105.project3.part1.web.util.*;
 @RequestMapping("/Books")
 @Controller
@@ -103,38 +102,8 @@ public class BookController {
 
         logger.info("Book id: " + Book.getId());
 
-        // Process upload file
-        if (file != null) {
-            logger.info("File name: " + file.getName());
-            logger.info("File size: " + file.getSize());
-            logger.info("File content type: " + file.getContentType());
-            byte[] fileContent = null;
-            try {
-                InputStream inputStream = file.getInputStream();
-                if (inputStream == null) logger.info("File inputstream is null");
-                fileContent = IOUtils.toByteArray(inputStream);
-                Book.setPhoto(fileContent);
-            } catch (IOException ex) {
-                logger.error("Error saving uploaded file");
-            }
-            Book.setPhoto(fileContent);
-        }
-
         BookService.save(Book);
         return "redirect:/Books/";
-    }
-
-    @RequestMapping(value = "/photo/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public byte[] downloadPhoto(@PathVariable("id") Long id) {
-        Book Book = BookService.findById(id);
-
-        if (Book.getPhoto() != null) {
-            logger.info("Downloading photo for id: {} with size: {}", Book.getId(),
-                    Book.getPhoto().length);
-        }
-
-        return Book.getPhoto();
     }
 
     @RequestMapping(params = "form", method = RequestMethod.GET)

@@ -16,6 +16,12 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+
+    <jpa:repositories base-package="rseg105.project3.part1"
+                      entity-manager-factory-ref="emf"
+                      transaction-manager-ref="transactionManager"/>
+
+                      <!-- CHANGE HERE FOR DATABASE CHANGES -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
         destroy-method="close">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -52,7 +58,4 @@
 
     <context:annotation-config/>
 
-    <jpa:repositories base-package="rseg105.project3.part1"
-                      entity-manager-factory-ref="emf"
-                      transaction-manager-ref="transactionManager"/>
 </beans>

@@ -7,7 +7,7 @@
 
     <spring:message code="header_text" var="headerText"/>
 
-    <div id="appname">
-        <h1>${headerText}</h1>
-    </div>
+    
+        <h1 id="header">${headerText}</h1>
+    
 </div>

@@ -51,11 +51,11 @@
     <title><spring:message code="welcome_h3" arguments="${app_name}" /></title>
 </head>
 
-<body class="tundra spring">
+<body>
 <div id="headerWrapper">
     <tiles:insertAttribute name="header" ignore="true" />
 </div>
-<div id="wrapper">
+<div id="body">
     <tiles:insertAttribute name="menu" ignore="true" />
     <div id="main">
         <tiles:insertAttribute name="body"/>
