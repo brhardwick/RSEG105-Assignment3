@@ -35,7 +35,7 @@
                 sortorder: 'asc',
                 viewrecords: true,
                 gridview: true,
-                height: 400,
+                height: 450,
                 width: 700,
                 caption: '${labelBookList}',
                 onSelectRow: function(id){
