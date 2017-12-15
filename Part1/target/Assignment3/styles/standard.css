@@ -49,12 +49,13 @@ div#footer{
     margin: 8px;
 }
 
-#listTitle{
+#main #title{
     color: #AAA;
     font-family: Arial, Helvetica, sans-serif;
     padding: 2px; 
 
 }
+
 
 div#menucontainer{
     width: 100%;
@@ -92,4 +93,76 @@ a {
 a:hover{
     color: #333;
     transition: all linear .5s;
+}
+
+.panel{
+    
+    max-width: 400px;
+    height: 100px;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    /* border: #DDD 1px solid; */
+    flex-flow: column;
+    font-family: sans-serif;
+    border-radius: 10px;
+}
+
+.panel .panelHeader{
+
+    font-size: x-large;
+    color: #333;
+    /* display: inline-flex; */
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.panel .panelContent{
+    font-size: large;
+    
+}
+
+#showBody{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+#editButtons{
+    display: flex;
+    text-align: center;
+    width: 100px;
+    margin-left: 206px;
+}
+#editButtons button{
+    outline: none;
+    padding: 9px;
+    border-radius: 9px;
+    background-color: inherit;
+    border: 2px solid #333;
+    color: #333;
+    margin: 10px;
+    min-width: 110px;
+}
+
+#editButtons button:hover{
+    border: 2px solid #FF7200;
+    color: #FF7200;
+    transition: .25s all linear;
+}
+
+#BookInfo{
+    display: flex;
+    flex-direction: column;
+    margin-top: 18px;
+}
+
+#message{
+    padding: 13px;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    border-radius: 11px
+}
+#message.success{
+    background-color: #b0eca5;
 }

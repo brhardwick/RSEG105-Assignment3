@@ -1,56 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page"
-     xmlns:c="http://java.sun.com/jsp/jstl/core"
-     xmlns:spring="http://www.springframework.org/tags"
-     xmlns:form="http://www.springframework.org/tags/form"
-     xmlns:joda="http://www.joda.org/joda/time/tags"
-     version="2.0">
+<div 
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:c="http://java.sun.com/jsp/jstl/core" 
+    xmlns:spring="http://www.springframework.org/tags" 
+    xmlns:form="http://www.springframework.org/tags/form" 
+    xmlns:joda="http://www.joda.org/joda/time/tags" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-
-    <spring:message code="label_Book_info" var="labelBookInfo"/>
-    <spring:message code="label_Book_first_name" var="labelBookFirstName"/>
-    <spring:message code="label_Book_last_name" var="labelBookLastName"/>
-    <spring:message code="label_Book_birth_date" var="labelBookBirthDate"/>
-    <spring:message code="label_Book_description" var="labelBookDescription"/>
-    <spring:message code="label_Book_update" var="labelBookUpdate"/>
-    <spring:message code="date_format_pattern" var="dateFormatPattern"/>
-    <spring:message code="label_Book_photo" var="labelBookPhoto"/>
-
-    <spring:url value="/Books/photo" var="BookPhotoUrl"/>
+    <spring:message code="label_Book_list" var="labelBookList"/>
+    <spring:message code="label_Book_title" var="labelBookTitle"/>
+    <spring:message code="label_Book_isbn" var="labelBookISBN"/>
+    <spring:message code="label_Book_price" var="labelBookPrice"/>
+    <spring:message code="label_Book_publisher" var="labelBookPublisher"/>
+    <spring:message code="label_Book_category" var="labelBookCategory"/>
     <spring:url value="/Books" var="editBookUrl"/>
-
-    <h1>${labelBookInfo}</h1>
-
     <div id="BookInfo">
-
         <c:if test="${not empty message}">
-            <div id="message" class="${message.type}">${message.message}</div>
+            <div id="message" class="${message.type}">
+                <i class="fa fa-meetup" aria-hidden="true"></i>                         ${message.message}
+            </div>
         </c:if>
-
-        <table>
-            <tr>
-                <td>${labelBookFirstName}</td>
-                <td>${Book.firstName}</td>
-            </tr>
-            <tr>
-                <td>${labelBookLastName}</td>
-                <td>${Book.lastName}</td>
-            </tr>
-            <tr>
-                <td>${labelBookBirthDate}</td>
-                <td><joda:format value="${Book.birthDate}" pattern="${dateFormatPattern}"/></td>
-            </tr>
-            <tr>
-                <td>${labelBookDescription}</td>
-                <td>${Book.description}</td>
-            </tr>
-            <tr>
-                <td>${labelBookPhoto}</td>
-                <td><img src="${BookPhotoUrl}/${Book.id}"></img></td>
-            </tr>
-        </table>
-
-        <a href="${editBookUrl}/${Book.id}?form">${labelBookUpdate}</a>
+        <h1 id="title">${Book.title}</h1>
+        <div id="showBody">
+            <div class="panel">
+                <div class="panelHeader">${labelBookISBN}</div>
+                <div class="panelContent">${Book.isbn}</div>
+            </div>
+            <div class="panel">
+                <div class="panelHeader">${labelBookPrice}</div>
+                <div class="panelContent">${Book.price}</div>
+            </div>
+            <div class="panel">
+                <div class="panelHeader">${labelBookPublisher}</div>
+                <div class="panelContent">${Book.publisher}</div>
+            </div>
+            <div class="panel">
+                <div class="panelHeader">${labelBookCategory}</div>
+                <div class="panelContent">${Book.category_name}</div>
+            </div>
+        </div>
     </div>
 </div>
