@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div 
-    xmlns:jsp="http://java.sun.com/JSP/Page" 
-    xmlns:c="http://java.sun.com/jsp/jstl/core" 
-    xmlns:spring="http://www.springframework.org/tags" 
-    xmlns:form="http://www.springframework.org/tags/form" 
-    xmlns:joda="http://www.joda.org/joda/time/tags" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <spring:message code="label_Book_list" var="labelBookList"/>
-    <spring:message code="label_Book_title" var="labelBookTitle"/>
-    <spring:message code="label_Book_isbn" var="labelBookISBN"/>
-    <spring:message code="label_Book_price" var="labelBookPrice"/>
-    <spring:message code="label_Book_publisher" var="labelBookPublisher"/>
-    <spring:message code="label_Book_category" var="labelBookCategory"/>
-    <spring:url value="/Books" var="editBookUrl"/>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags"
+    xmlns:form="http://www.springframework.org/tags/form" xmlns:joda="http://www.joda.org/joda/time/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:output omit-xml-declaration="yes" />
+    <spring:message code="label_Book_list" var="labelBookList" />
+    <spring:message code="label_Book_title" var="labelBookTitle" />
+    <spring:message code="label_Book_isbn" var="labelBookISBN" />
+    <spring:message code="label_Book_price" var="labelBookPrice" />
+    <spring:message code="label_Book_publisher" var="labelBookPublisher" />
+    <spring:message code="label_Book_category" var="labelBookCategory" />
+    <spring:url value="/Books" var="editBookUrl" />
     <div id="BookInfo">
         <c:if test="${not empty message}">
             <div id="message" class="${message.type}">
-                <i class="fa fa-meetup" aria-hidden="true"></i>                         ${message.message}
+                <table>
+                    <tr>
+                        <td>
+                            <div class="fa fa-check" aria-hidden="true"></div>
+                            <div class="fa fa-times" aria-hidden="true"></div>
+                        </td>
+                        <td>
+                            <div>${message.message}</div>
+                        </td>
+                    </tr>
+                </table>
             </div>
+
         </c:if>
         <h1 id="title">${Book.title}</h1>
         <div id="showBody">

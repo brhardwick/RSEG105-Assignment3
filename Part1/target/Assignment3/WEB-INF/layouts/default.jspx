@@ -13,7 +13,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
 
-    <spring:theme code="styleSheet" var="app_css" />
+    <spring:theme code="defaultTheme" var="app_css" />
     <spring:url value="/${app_css}" var="app_css_url" />
     <link rel="stylesheet" type="text/css" media="screen" href="${app_css_url}" />
 
@@ -21,9 +21,9 @@
     <spring:url value="/resources/scripts/jquery-ui-1.10.4.custom.min.js"
                 var="jquery_ui_url" />
     <spring:url value="/resources/styles/font-awesome/css/font-awesome.css"
-                var="font-awesome_url" />
+                var="fa" />
                 <!-- Font Awesome Below -->
-    <link rel="stylesheet" type="text/css" media="screen" href="${font-awesome_url}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="${fa}" />
     <spring:url value="/resources/styles/custom-theme/jquery-ui-1.10.4.custom.css"
                 var="jquery_ui_theme_css" />
     <link rel="stylesheet" type="text/css" media="screen" href="${jquery_ui_theme_css}" />
