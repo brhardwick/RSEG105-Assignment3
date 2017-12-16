@@ -31,15 +31,17 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Book")
+@Table(name = "book")
 public class Book implements Serializable {
     
     private String category_name;
     private String isbn;
     private String title;
+
     private String publisher;
     private double price;
 	private Long id;
@@ -124,6 +126,7 @@ public class Book implements Serializable {
         return "Book - Id: " + id;
     }
 
+    @NotEmpty(message="{errors.ISBN.NotEmpty}")
 	public String getIsbn() {
 		return isbn;
 	}
@@ -132,14 +135,16 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 	}
 
+    @NotEmpty(message="{errors.Category.NotEmpty}")
 	public String getCategory_name() {
 		return category_name;
 	}
 
 	public void setCategory_name(String category_name) {
 		this.category_name = category_name;
-	}
-
+    }
+    
+    @NotEmpty(message="{errors.Title.NotEmpty}")
 	public String getTitle() {
 		return title;
 	}
@@ -147,7 +152,7 @@ public class Book implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+    
 	public String getPublisher() {
 		return publisher;
 	}
@@ -156,6 +161,7 @@ public class Book implements Serializable {
 		this.publisher = publisher;
 	}
 
+    
 	public double getPrice() {
 		return price;
 	}

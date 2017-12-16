@@ -27,23 +27,23 @@
             </div>
 
         </c:if>
-        <h1 id="title">${Book.title}</h1>
+        <h1 id="title">${book.title}</h1>
         <div id="showBody">
             <div class="panel">
                 <div class="panelHeader">${labelBookISBN}</div>
-                <div class="panelContent">${Book.isbn}</div>
+                <div class="panelContent">${book.isbn}</div>
             </div>
             <div class="panel">
                 <div class="panelHeader">${labelBookPrice}</div>
-                <div class="panelContent">${Book.price}</div>
+                <div class="panelContent">${book.price}</div>
             </div>
             <div class="panel">
                 <div class="panelHeader">${labelBookPublisher}</div>
-                <div class="panelContent">${Book.publisher}</div>
+                <div class="panelContent">${book.publisher}</div>
             </div>
             <div class="panel">
                 <div class="panelHeader">${labelBookCategory}</div>
-                <div class="panelContent">${Book.category_name}</div>
+                <div class="panelContent">${book.category_name}</div>
             </div>
         </div>
     </div>

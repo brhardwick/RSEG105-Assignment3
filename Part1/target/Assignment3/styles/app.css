@@ -78,12 +78,33 @@ div#menu span, div#menu a {
     margin:0px;
     padding:2px;
 }
+
+div#menu a {
+    margin-left:20px;
+
+    padding:10px;
+    
+    border-right: #FF7200 solid 1px;
+    border-left: #FF7200 solid 1px;
+
+}
+
+div#menu a:hover {
+    transition:none;
+    text-decoration:none;
+    padding:10px;
+    border:none;
+    border-top: #333 solid 1px;
+    border-bottom: #333 solid 1px;
+    
+
+}
 div#menu span{
-    border-right: #CCC solid 1px;
+    /* border-right: #CCC solid 1px; */
     margin-right: 5px;
     padding-right: 10px;
     font-family: sans-serif;
-    color: #555;
+    color: #AAA;
 }
 a {
     color: #FF7200;
@@ -165,19 +186,46 @@ a:hover{
     margin-top: 10px;
     border-radius: 11px;
     display:flex;
-}
-#message.success{
-    background-color: #b0eca5;
-
+    font-family: sans-serif;
+    color: #333;
 }
 
 #message div.fa{
     display:none;
 }
 
+#message.success{
+    background-color: #b0eca5;
+    color: #71966a;
+}
 
 #message.success div.fa.fa-check{
     display:block;
     margin-right: 20px;
     color: #71966a;
+}
+
+#message.error{
+    background-color: #eca5a5;
+    color: #c55454;
+}
+
+#message.error div.fa.fa-times{
+    display:block;
+    margin-right: 20px;
+    color: #c55454;
+}
+
+div.fieldError{
+    width:100%;
+    padding:0;
+    padding-bottom:10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    
+    color: #c55454;
+    font-family:sans-serif;
+}
+div.fieldErrors span{
+    padding-left:10px;
 }

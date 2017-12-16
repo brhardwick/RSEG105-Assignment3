@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.springframework.validation.FieldError;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import javax.validation.Valid;
@@ -45,7 +45,7 @@ public class BookController {
         logger.info("Listing Books");
 
         List<Book> Books = BookService.findAll();
-        uiModel.addAttribute("Books", Books);
+        uiModel.addAttribute("books", Books);
 
         logger.info("No. of Books: " + Books.size());
 
@@ -55,61 +55,68 @@ public class BookController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String show(@PathVariable("id") Long id, Model uiModel) {
         Book Book = BookService.findById(id);
-        uiModel.addAttribute("Book", Book);
+        uiModel.addAttribute("book", Book);
 
         return "Books/show";
     }
 
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
-    public String update(@Valid Book Book, BindingResult bindingResult, Model uiModel,
+    public String update(@Valid Book book, BindingResult bindingResult, Model uiModel,
                          HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
                          Locale locale) {
         logger.info("Updating Book");
         if (bindingResult.hasErrors()) {
+            logger.info("Has error");
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            for (FieldError error : errors ) {
+               logger.info (error.getObjectName() + " - " + error.getDefaultMessage());
+            }
             uiModel.addAttribute("message", new Message("error",
-                    messageSource.getMessage("Book_save_fail", new Object[]{}, locale)));
-            uiModel.addAttribute("Book", Book);
+                
+                messageSource.getMessage("Book_save_fail", new Object[]{}, locale)));
+            uiModel.addAttribute("book", book);
             return "Books/update";
         }
         uiModel.asMap().clear();
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("Book_save_success", new Object[]{}, locale)));
-        BookService.save(Book);
-        return "redirect:/Books/" + UrlUtil.encodeUrlPathSegment(Book.getId().toString(),
+        BookService.save(book);
+        return "redirect:/Books/" + UrlUtil.encodeUrlPathSegment(book.getId().toString(),
                 httpServletRequest);
     }
 
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("Book", BookService.findById(id));
+        uiModel.addAttribute("book", BookService.findById(id));
         return "Books/update";
     }
 
     @RequestMapping(params = "form", method = RequestMethod.POST)
-    public String create(@Valid Book Book, BindingResult bindingResult, Model uiModel, 
+    public String create(@Valid Book book, BindingResult bindingResult, Model uiModel, 
 		HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
 		Locale locale, @RequestParam(value="file", required=false) Part file) {
         logger.info("Creating Book");
         if (bindingResult.hasErrors()) {
+            
             uiModel.addAttribute("message", new Message("error",
                     messageSource.getMessage("Book_save_fail", new Object[]{}, locale)));
-            uiModel.addAttribute("Book", Book);
+            uiModel.addAttribute("book", book);
             return "Books/create";
         }
         uiModel.asMap().clear();
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("Book_save_success", new Object[]{}, locale)));
 
-        logger.info("Book id: " + Book.getId());
+        logger.info("Book id: " + book.getId());
 
-        BookService.save(Book);
+        BookService.save(book);
         return "redirect:/Books/";
     }
 
     @RequestMapping(params = "form", method = RequestMethod.GET)
     public String createForm(Model uiModel) {
         Book Book = new Book();
-        uiModel.addAttribute("Book", Book);
+        uiModel.addAttribute("book", Book);
 
         return "Books/create";
     }
