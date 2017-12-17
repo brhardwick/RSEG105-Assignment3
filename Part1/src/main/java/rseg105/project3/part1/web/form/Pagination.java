@@ -3,7 +3,7 @@ package rseg105.project3.part1.web.form;
 import java.util.List;
 import rseg105.project3.part1.domain.*;
 
-public class BookGrid {
+public class Pagination {
     private int totalPages;
     private int currentPage;
     private long totalRecords;

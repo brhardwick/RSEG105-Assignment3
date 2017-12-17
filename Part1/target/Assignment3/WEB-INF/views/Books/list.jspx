@@ -12,7 +12,6 @@
     <spring:message code="label_Book_publisher" var="labelBookPublisher"/>
     <spring:message code="label_Book_category" var="labelBookCategory"/>
     <spring:url value="/Books" var="showBookUrl"/>
-    <!-- <spring:url value="/resources/scripts/list.js" var="listScriptUrl" /> -->
     <script type="text/javascript">
         $(function(){
             $("#listcontainer").jqGrid({
@@ -51,9 +50,9 @@
             });
         });
     </script>
-    <script type="text/javascript" src="${listScriptUrl}">
-        <jsp:text/>
-    </script>
+    <!-- <script type="text/javascript" src="${listScriptUrl}">
+        // <jsp:text/>
+    </script> -->
     <c:if test="${not empty message}">
         <div id="message" class="${message.type}">${message.message}</div>
     </c:if>

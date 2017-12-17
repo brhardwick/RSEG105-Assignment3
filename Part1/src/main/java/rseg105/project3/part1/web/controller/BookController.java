@@ -30,7 +30,7 @@ import javax.servlet.http.Part;
 import javax.validation.Valid;
 import rseg105.project3.part1.domain.*;
 import rseg105.project3.part1.service.*;
-import rseg105.project3.part1.web.form.BookGrid;
+import rseg105.project3.part1.web.form.Pagination;
 import rseg105.project3.part1.web.util.*;
 @RequestMapping("/Books")
 @Controller
@@ -66,11 +66,13 @@ public class BookController {
                          Locale locale) {
         logger.info("Updating Book");
         if (bindingResult.hasErrors()) {
-            logger.info("Has error");
+            
+            logger.info("Has errors");
             List<FieldError> errors = bindingResult.getFieldErrors();
             for (FieldError error : errors ) {
                logger.info (error.getObjectName() + " - " + error.getDefaultMessage());
             }
+
             uiModel.addAttribute("message", new Message("error",
                 
                 messageSource.getMessage("Book_save_fail", new Object[]{}, locale)));
@@ -123,19 +125,14 @@ public class BookController {
 
     @ResponseBody
     @RequestMapping(value = "/listgrid", method = RequestMethod.GET, produces="application/json")
-    public BookGrid listGrid(@RequestParam(value = "page", required = false) Integer page,
+    public Pagination listGrid(@RequestParam(value = "page", required = false) Integer page,
                                 @RequestParam(value = "rows", required = false) Integer rows,
                                 @RequestParam(value = "sidx", required = false) String sortBy,
                                 @RequestParam(value = "sord", required = false) String order) {
 
-        logger.info("Listing Books for grid with page: {}, rows: {}", page, rows);
-        logger.info("Listing Books for grid with sort: {}, order: {}", sortBy, order);
-
-        // Process order by
-        Sort sort = null;
+          Sort sort = null;
         String orderBy = sortBy;
-        if (orderBy != null && orderBy.equals("birthDateString"))
-            orderBy = "birthDate";
+        logger.info ("Sorting by '"+orderBy +"'");
 
         if (orderBy != null && order != null) {
             if (order.equals("desc")) {
@@ -143,9 +140,7 @@ public class BookController {
             } else
                 sort = new Sort(Sort.Direction.ASC, orderBy);
         }
-
-        // Constructs page request for current page
-        // Note: page number for Spring Data JPA starts with 0, while jqGrid starts with 1
+    
         PageRequest pageRequest = null;
 
         if (sort != null) {
@@ -156,16 +151,16 @@ public class BookController {
 
         Page<Book> BookPage = BookService.findAllByPage(pageRequest);
 
-        // Construct the grid data that will return as JSON data
-        BookGrid BookGrid = new BookGrid();
+       
 
-        BookGrid.setCurrentPage(BookPage.getNumber() + 1);
-        BookGrid.setTotalPages(BookPage.getTotalPages());
-        BookGrid.setTotalRecords(BookPage.getTotalElements());
+        Pagination pagination = new Pagination();
+        pagination.setCurrentPage(BookPage.getNumber() + 1);
+        pagination.setTotalPages(BookPage.getTotalPages());
+        pagination.setTotalRecords(BookPage.getTotalElements());
 
-        BookGrid.setBookData(Lists.newArrayList(BookPage.iterator()));
+        pagination.setBookData(Lists.newArrayList(BookPage.iterator()));
 
-        return BookGrid;
+        return pagination;
     }
 
     @Autowired

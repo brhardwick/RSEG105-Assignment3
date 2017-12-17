@@ -9,7 +9,7 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-public class MyWebAppInitializer implements WebApplicationInitializer {
+public class AppInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext container) throws ServletException {
         XmlWebApplicationContext appContext = new XmlWebApplicationContext();
 
