@@ -24,7 +24,7 @@
                     {name:'isbn', index:'isbn', width:100},
                     {name:'price', index:'price', width:50},
                     {name:'publisher', index:'publisher', width:150},
-                    {name:'category_name', index:'category_name', width:100}
+                    {name:'category', index:'category', width:100}
                 ],
                 jsonReader : {
                     root:"bookData",

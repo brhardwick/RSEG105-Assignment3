@@ -229,3 +229,15 @@ div.fieldError{
 div.fieldErrors span{
     padding-left:10px;
 }
+
+
+input{
+    color: #333 !important;
+    outline:none;
+    border:0;
+    border-bottom: #555 1px solid;
+}
+
+input:focus{
+    border-bottom: #FF7200 1px solid;
+}

@@ -79,13 +79,13 @@
                 </div>
                 <div class="panel">
                     <div class="panelHeader">
-                        <form:label path="category_name">${labelBookCategory}*</form:label>
+                        <form:label path="category">${labelBookCategory}*</form:label>
                     </div>
                     <div class="panelContent">
-                        <form:input path="category_name" />
+                        <form:input path="category" />
                     </div>
                     <div class="fieldError">
-                        <form:errors path="category_name" cssClass="error" />
+                        <form:errors path="category" cssClass="error" />
                     </div>
                 </div>
             </div>

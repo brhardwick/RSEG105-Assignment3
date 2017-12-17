@@ -32,6 +32,7 @@ import rseg105.project3.part1.domain.*;
 import rseg105.project3.part1.service.*;
 import rseg105.project3.part1.web.form.Pagination;
 import rseg105.project3.part1.web.util.*;
+
 @RequestMapping("/Books")
 @Controller
 public class BookController {
@@ -46,8 +47,6 @@ public class BookController {
 
         List<Book> Books = BookService.findAll();
         uiModel.addAttribute("books", Books);
-
-        logger.info("No. of Books: " + Books.size());
 
         return "Books/list";
     }
@@ -112,7 +111,8 @@ public class BookController {
         logger.info("Book id: " + book.getId());
 
         BookService.save(book);
-        return "redirect:/Books/";
+        return "redirect:/Books/"  + UrlUtil.encodeUrlPathSegment(book.getId().toString(),
+        httpServletRequest);
     }
 
     @RequestMapping(params = "form", method = RequestMethod.GET)
@@ -150,8 +150,6 @@ public class BookController {
         }
 
         Page<Book> BookPage = BookService.findAllByPage(pageRequest);
-
-       
 
         Pagination pagination = new Pagination();
         pagination.setCurrentPage(BookPage.getNumber() + 1);

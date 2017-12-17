@@ -43,7 +43,7 @@
             </div>
             <div class="panel">
                 <div class="panelHeader">${labelBookCategory}</div>
-                <div class="panelContent">${book.category_name}</div>
+                <div class="panelContent">${book.category}</div>
             </div>
         </div>
     </div>

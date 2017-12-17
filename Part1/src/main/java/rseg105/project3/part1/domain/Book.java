@@ -27,7 +27,7 @@ import javax.validation.constraints.Size;
 @Table(name = "book")
 public class Book implements Serializable {
     
-    private String category_name;
+    private String category;
     private String isbn;
     private String title;
 
@@ -46,7 +46,7 @@ public class Book implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     @Override
     public String toString() {
         return "Book - Id: " + id;
@@ -61,13 +61,14 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 	}
 
+    @Column(name = "CATEGORY_NAME")
     @NotEmpty(message="{errors.Category.NotEmpty}")
-	public String getCategory_name() {
-		return category_name;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setCategory(String category) {
+		this.category = category;
     }
     
     @NotEmpty(message="{errors.Title.NotEmpty}")
