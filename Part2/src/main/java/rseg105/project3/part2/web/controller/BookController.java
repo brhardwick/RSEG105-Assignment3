@@ -59,6 +59,7 @@ public class BookController {
         return "Books/show";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
     public String update(@Valid Book book, BindingResult bindingResult, Model uiModel,
                          HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes,
@@ -86,6 +87,7 @@ public class BookController {
                 httpServletRequest);
     }
 
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
     public String updateForm(@PathVariable("id") Long id, Model uiModel) {
         uiModel.addAttribute("book", BookService.findById(id));

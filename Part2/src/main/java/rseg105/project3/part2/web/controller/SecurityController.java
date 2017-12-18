@@ -18,15 +18,12 @@ public class SecurityController {
 
     private MessageSource messageSource;
 
-    /**Handles /security/loginfail use case. We store the login fail message in the 
-     * Model and then redirect to the home page
-     */
     @RequestMapping("/loginfail")
     public String loginFail(Model uiModel, Locale locale) {
         logger.info("Login failed detected");
         uiModel.addAttribute("message", new Message("error",
                 messageSource.getMessage("message_login_fail", new Object[]{}, locale)));
-        return "books/list";
+        return "Books/list";
     }
 
     @Autowired

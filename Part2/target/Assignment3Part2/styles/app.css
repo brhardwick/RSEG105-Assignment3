@@ -73,7 +73,20 @@ div#menucontainer{
 div#menu{
     padding-left: 25px;
     padding-top: 3px;
+    display: flex;
+    flex-direction: row;
 }
+
+div#menu #login{
+    display: flex;
+    flex-direction: row;
+}
+
+div#menu #login input{
+    width:100px;
+    margin-right:10px;
+}
+
 div#menu span, div#menu a {
     margin:0px;
     padding:2px;
