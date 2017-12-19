@@ -56,7 +56,6 @@ div#footer{
 
 }
 
-
 div#menucontainer{
     width: 100%;
     padding: 2px;
@@ -80,11 +79,29 @@ div#menu{
 div#menu #login{
     display: flex;
     flex-direction: row;
+    right:15px;
+    position:absolute;
 }
 
 div#menu #login input{
     width:100px;
     margin-right:10px;
+}
+
+#login button{
+    padding: 3px;
+    background-color: #BBB;
+    color: white;
+    outline: none;
+    border: none;
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+#login button:hover{
+    
+    background-color: #AAA;
+
 }
 
 div#menu span, div#menu a {
@@ -94,24 +111,21 @@ div#menu span, div#menu a {
 
 div#menu a {
     margin-left:20px;
-
-    padding:10px;
-    
+    padding-left: 10px;
+    padding-right:10px;
     border-right: #FF7200 solid 1px;
     border-left: #FF7200 solid 1px;
-
 }
 
 div#menu a:hover {
     transition:none;
     text-decoration:none;
-    padding:10px;
     border:none;
     border-top: #333 solid 1px;
-    border-bottom: #333 solid 1px;
-    
+    border-bottom: #333 solid 1px;   
 
 }
+
 div#menu span{
     /* border-right: #CCC solid 1px; */
     margin-right: 5px;
@@ -119,6 +133,7 @@ div#menu span{
     font-family: sans-serif;
     color: #AAA;
 }
+
 a {
     color: #FF7200;
     font-family: sans-serif;

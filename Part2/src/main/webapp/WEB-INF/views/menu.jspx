@@ -10,18 +10,17 @@
     <spring:url value="/Books" var="editBookUrl" />
     <spring:url var="loginUrl" value="/j_spring_security_check" />
     <div id="menu">
-       
+            <span>${menuHeaderText}</span>
         <sec:authorize access="hasRole('ROLE_USER')">
-            <span>text</span>
-        </sec:authorize>
-        <span>${menuHeaderText}</span>
-        <a href="${addBookUrl}">${menuAddBook}</a>
+                <a href="${addBookUrl}">${menuAddBook}</a>
+        </sec:authorize>      
+        
         <sec:authorize access="isAnonymous()">
                 <div id="login">
                     <span>Login</span>
                     <form name="loginForm" action="${loginUrl}" method="post">
-                            <input type="text" name="j_username"/>
-                            <input type="password" name="j_password"/>
+                            <input type="text" placeholder="username" name="j_username"/>
+                            <input type="password" placeholder="password" name="j_password"/>
                             <button name="submit" type="submit" value="Login">Login</button>
                     </form>
     
