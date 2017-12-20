@@ -68,6 +68,12 @@ div#menucontainer{
     padding-top: 7px;
     padding-bottom: 0px;
     margin-bottom: 0px;
+    margin-top:-2px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color:rgb(240, 240, 240);
+    border: 1px solid #DDD;
+
 }
 div#menu{
     padding-left: 25px;
@@ -120,9 +126,11 @@ div#menu a {
 div#menu a:hover {
     transition:none;
     text-decoration:none;
-    border:none;
-    border-top: #333 solid 1px;
-    border-bottom: #333 solid 1px;   
+    margin-left:20px;
+    padding-left: 10px;
+    padding-right:10px;
+    border-right-color: #FF7200;
+    border-left-color: #FF7200;
 
 }
 

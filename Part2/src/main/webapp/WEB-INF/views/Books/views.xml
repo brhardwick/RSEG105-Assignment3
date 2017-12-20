@@ -4,16 +4,18 @@
 <tiles-definitions>
     <definition extends="default" name="Books/list">
         <put-attribute name="body" value="/WEB-INF/views/Books/list.jspx" />
-        <put-attribute name="menu" value="/WEB-INF/views/menu.jspx" />
+        <put-attribute name="menu" value="/WEB-INF/views/Menu/menu.jspx" />
     </definition>
     <definition extends="default" name="Books/show">
         <put-attribute name="body" value="/WEB-INF/views/Books/show.jspx" />
-        <put-attribute name="menu" value="/WEB-INF/views/menu_show.jspx" />
+        <put-attribute name="menu" value="/WEB-INF/views/Menu/menu-show.jspx" />
     </definition>
     <definition extends="default" name="Books/update">
         <put-attribute name="body" value="/WEB-INF/views/Books/edit.jspx" />
+        <put-attribute name="menu" value="/WEB-INF/views/Menu/menu-edit.jspx" />
     </definition>
     <definition extends="default" name="Books/create">
         <put-attribute name="body" value="/WEB-INF/views/Books/edit.jspx" />
+        <put-attribute name="menu" value="/WEB-INF/views/Menu/menu-edit.jspx" />
     </definition>
 </tiles-definitions>
