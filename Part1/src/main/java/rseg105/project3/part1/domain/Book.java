@@ -3,26 +3,18 @@ package rseg105.project3.part1.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-
-import org.hibernate.annotations.Type;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.joda.time.DateTime;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import javax.persistence.Basic;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.persistence.Version;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+//The naming of this table will be used throughout access in beans and jsp pages. 
+//It is case sensitive
 @Entity
 @Table(name = "book")
 public class Book implements Serializable {
@@ -32,7 +24,7 @@ public class Book implements Serializable {
     private String title;
 
     private String publisher;
-    private double price;
+    private BigDecimal price;
 	private Long id;
 
 
@@ -49,7 +41,7 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return "Book - Id: " + id;
+        return "Book - {Id: " + id + ", Title: " +title+ " ISBN: " + isbn + ", Category: " + category + ", Publisher: " + publisher + ", Price: " + price+ "} ";
     }
 
     @NotEmpty(message="{errors.ISBN.NotEmpty}")
@@ -61,6 +53,7 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 	}
 
+	//This is renamed from CATEGORY_NAME (in the database) to Category to resolve naming issues in jquery
     @Column(name = "CATEGORY_NAME")
     @NotEmpty(message="{errors.Category.NotEmpty}")
 	public String getCategory() {
@@ -88,12 +81,14 @@ public class Book implements Serializable {
 		this.publisher = publisher;
 	}
 
-    
-	public double getPrice() {
+	//The type is BigDecimal here because double and float cannot be null and the 1.1 spec of BeanValidation
+	/// does not support it: http://beanvalidation.org/1.1/spec/
+    @NotNull(message="{errors.Price.NotNull}")    
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 }

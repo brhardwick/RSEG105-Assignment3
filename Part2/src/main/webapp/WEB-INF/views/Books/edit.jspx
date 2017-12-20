@@ -38,6 +38,7 @@
                         <form:label path="title">${labelBookTitle}*</form:label>
                     </div>
                     <div class="panelContent">
+                    <!-- The title is a little longer than the rest -->
                         <form:input path="title" style="width:263px;"/>
                     </div>
                     <div class="fieldError">

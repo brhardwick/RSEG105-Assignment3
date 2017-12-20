@@ -3,7 +3,7 @@ package rseg105.project3.part2.domain;
 import static javax.persistence.GenerationType.IDENTITY;
 
 import java.io.Serializable;
-
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 //The naming of this table will be used throughout access in beans and jsp pages. 
 //It is case sensitive
@@ -23,7 +24,7 @@ public class Book implements Serializable {
     private String title;
 
     private String publisher;
-    private double price;
+    private BigDecimal price;
 	private Long id;
 
 
@@ -81,11 +82,12 @@ public class Book implements Serializable {
 	}
 
     
-	public double getPrice() {
+	@NotNull(message="${errors.Price.NotNull}")    
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 }

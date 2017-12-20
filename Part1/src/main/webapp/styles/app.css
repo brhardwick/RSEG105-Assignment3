@@ -120,7 +120,7 @@ a:hover{
 
 .panel{
     
-    max-width: 400px;
+    max-width: 255px;
     height: 100px;
     display: flex;
     margin: 10px;
