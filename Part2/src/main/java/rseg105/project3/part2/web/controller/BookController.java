@@ -1,12 +1,14 @@
 package rseg105.project3.part2.web.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
+import javax.validation.Valid;
+
 import com.google.common.collect.Lists;
-import org.apache.commons.io.IOUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +20,19 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.validation.FieldError;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
-import javax.validation.Valid;
-import rseg105.project3.part2.domain.*;
-import rseg105.project3.part2.service.*;
+
+import rseg105.project3.part2.domain.Book;
+import rseg105.project3.part2.domain.Message;
+import rseg105.project3.part2.service.BookService;
 import rseg105.project3.part2.web.form.Pagination;
-import rseg105.project3.part2.web.util.*;
+import rseg105.project3.part2.web.util.UrlUtil;
 
 @RequestMapping("/Books")
 @Controller
@@ -43,11 +44,9 @@ public class BookController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model uiModel) {
-        logger.info("Listing Books");
-
         List<Book> Books = BookService.findAll();
+        //passing the List data structure to the view
         uiModel.addAttribute("books", Books);
-
         return "Books/list";
     }
 
@@ -55,10 +54,10 @@ public class BookController {
     public String show(@PathVariable("id") Long id, Model uiModel) {
         Book Book = BookService.findById(id);
         uiModel.addAttribute("book", Book);
-
         return "Books/show";
     }
 
+    //Authentication is checked on the front-end so, in theory, anyone hitting this endpoint should be authenticated, but it is a good extra check
     @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
     public String update(@Valid Book book, BindingResult bindingResult, Model uiModel,
@@ -67,6 +66,7 @@ public class BookController {
         logger.info("Updating Book");
         if (bindingResult.hasErrors()) {
             
+            //Cycle through the actual errors
             logger.info("Has errors");
             List<FieldError> errors = bindingResult.getFieldErrors();
             for (FieldError error : errors ) {
@@ -125,6 +125,7 @@ public class BookController {
         return "Books/create";
     }
 
+    //This function takes parameters from the URL from an AJAX call from the JQGrid
     @ResponseBody
     @RequestMapping(value = "/listgrid", method = RequestMethod.GET, produces="application/json")
     public Pagination listGrid(@RequestParam(value = "page", required = false) Integer page,
@@ -132,9 +133,8 @@ public class BookController {
                                 @RequestParam(value = "sidx", required = false) String sortBy,
                                 @RequestParam(value = "sord", required = false) String order) {
 
-          Sort sort = null;
+        Sort sort = null;
         String orderBy = sortBy;
-        logger.info ("Sorting by '"+orderBy +"'");
 
         if (orderBy != null && order != null) {
             if (order.equals("desc")) {
@@ -157,9 +157,9 @@ public class BookController {
         pagination.setCurrentPage(BookPage.getNumber() + 1);
         pagination.setTotalPages(BookPage.getTotalPages());
         pagination.setTotalRecords(BookPage.getTotalElements());
-
         pagination.setBookData(Lists.newArrayList(BookPage.iterator()));
 
+        //Spring will serialize this into JSON for us
         return pagination;
     }
 

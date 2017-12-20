@@ -1,5 +1,6 @@
 package rseg105.project3.part2.domain;
 
+//This class is passed from controller to view to display information to the user
 public class Message {
     private String type;
     private String message;
