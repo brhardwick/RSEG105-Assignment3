@@ -15,10 +15,12 @@ public class AppInitializer implements WebApplicationInitializer {
 
         appContext.setConfigLocation("/WEB-INF/spring/appServlet/servlet-context.xml");
 
+       
         ServletRegistration.Dynamic dispatcher =
                 container.addServlet("appServlet", new DispatcherServlet(appContext));
 
-        MultipartConfigElement multipartConfigElement =
+      
+                MultipartConfigElement multipartConfigElement =
                 new MultipartConfigElement(null, 5000000, 5000000, 0);
         dispatcher.setMultipartConfig(multipartConfigElement);
 
