@@ -9,6 +9,9 @@
     <spring:url value="/Books?form" var="addBookUrl" />
     <spring:url value="/Books" var="editBookUrl" />
     <spring:url var="loginUrl" value="/j_spring_security_check" />
+    <spring:message code="label_username" var="labelUsername" />
+    <spring:message code="label_password" var="labelPassword" />
+    <spring:message code="label_login" var="labelLogin" />
     <div id="menu">
             <span>${menuHeaderText}</span>
         <sec:authorize access="hasRole('ROLE_USER')">
@@ -17,11 +20,11 @@
         
         <sec:authorize access="isAnonymous()">
                 <div id="login">
-                    <span>Login</span>
+                    <span>${labelLogin}</span>
                     <form name="loginForm" action="${loginUrl}" method="post">
-                            <input type="text" placeholder="username" name="j_username"/>
-                            <input type="password" placeholder="password" name="j_password"/>
-                            <button name="submit" type="submit" value="Login">Login</button>
+                            <input type="text" placeholder="${labelUsername}" name="j_username"/>
+                            <input type="password" placeholder="${labelPassword}" name="j_password"/>
+                            <button name="submit" type="submit" value="Login">${labelLogin}</button>
                     </form>
     
                 </div>
