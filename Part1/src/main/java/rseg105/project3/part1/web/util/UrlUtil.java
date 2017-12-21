@@ -10,7 +10,7 @@ import org.springframework.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//This was written almost entirely from the book code
+//This utility used from ProSpring code
 public class UrlUtil {
     private static Logger logger = LoggerFactory.getLogger(UrlUtil.class);
     public static String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

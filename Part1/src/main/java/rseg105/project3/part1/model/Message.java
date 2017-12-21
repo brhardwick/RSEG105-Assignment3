@@ -1,4 +1,4 @@
-package rseg105.project3.part1.domain;
+package rseg105.project3.part1.model;
 
 //This class is passed from controller to view to display information to the user
 public class Message {

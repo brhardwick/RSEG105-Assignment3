@@ -4,70 +4,67 @@
       xmlns:tiles="http://tiles.apache.org/tags-tiles"
       xmlns:spring="http://www.springframework.org/tags">
 
-<jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
+    <jsp:output doctype-root-element="HTML" doctype-system="about:legacy-compat" />
 
-<jsp:directive.page contentType="text/html;charset=UTF-8" />
-<jsp:directive.page pageEncoding="UTF-8" />
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:directive.page pageEncoding="UTF-8" />
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=8" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- This is very important. Without this, the page wont display correctly in IE -->
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 
-    <spring:theme code="defaultTheme" var="app_css" />
-    <spring:url value="/${app_css}" var="app_css_url" />
-    <link rel="stylesheet" type="text/css" media="screen" href="${app_css_url}" />
+        <spring:theme code="defaultTheme" var="app_css" />
+        <spring:url value="/${app_css}" var="app_css_url" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${app_css_url}" />
 
-    <spring:url value="/resources/scripts/jquery-1.11.1.js" var="jquery_url" />
-    <spring:url value="/resources/scripts/jquery-ui-1.10.4.custom.min.js"
-                var="jquery_ui_url" />
-    <spring:url value="/resources/styles/font-awesome/css/font-awesome.css"
-                var="fa" />
-    <!-- Font Awesome  -->
-    <link rel="stylesheet" type="text/css" media="screen" href="${fa}" />
-    <spring:url value="/resources/styles/custom-theme/jquery-ui-1.10.4.custom.css"
-                var="jquery_ui_theme_css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="${jquery_ui_theme_css}" />
-    
-    <!-- JQuery -->
-    <script src="${jquery_url}" type="text/javascript"><jsp:text/></script>
-    <script src="${jquery_ui_url}" type="text/javascript"><jsp:text/></script>
+        <spring:url value="/resources/scripts/jquery-1.11.1.js" var="jquery_url" />
+        <spring:url value="/resources/scripts/jquery-ui-1.10.4.custom.min.js" var="jquery_ui_url" />
+        <spring:url value="/resources/styles/font-awesome/css/font-awesome.css" var="fa" />
+                    <!-- Font Awesome Below -->
+        <link rel="stylesheet" type="text/css" media="screen" href="${fa}" />
+        <spring:url value="/resources/styles/custom-theme/jquery-ui-1.10.4.custom.css"
+                    var="jquery_ui_theme_css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${jquery_ui_theme_css}" />
 
-    <!-- CKEditor -->
-    <spring:url value="/resources/ckeditor/ckeditor.js" var="ckeditor_url" />
-    <spring:url value="/resources/ckeditor/adapters/jquery.js" var="ckeditor_jquery_url" />
-    <script type="text/javascript" src="${ckeditor_url}"><jsp:text/></script>
-    <script type="text/javascript" src="${ckeditor_jquery_url}"><jsp:text/></script>
+        <script src="${jquery_url}" type="text/javascript"><jsp:text/></script>
+        <script src="${jquery_ui_url}" type="text/javascript"><jsp:text/></script>
 
-    <!-- jqGrid -->
-    <spring:url value="/resources/jqgrid/css/ui.jqgrid.css" var="jqgrid_css" />
-    <spring:url value="/resources/jqgrid/js/i18n/grid.locale-en.js"
-                var="jqgrid_locale_url" />
-    <spring:url value="/resources/jqgrid/js/jquery.jqGrid.min.js" var="jqgrid_url" />
-    <link rel="stylesheet" type="text/css" media="screen" href="${jqgrid_css}" />
-    <script type="text/javascript" src="${jqgrid_locale_url}"><jsp:text/></script>
-    <script type="text/javascript" src="${jqgrid_url}"><jsp:text/></script>
+        <!-- CKEditor -->
+        <spring:url value="/resources/ckeditor/ckeditor.js" var="ckeditor_url" />
+        <spring:url value="/resources/ckeditor/adapters/jquery.js" var="ckeditor_jquery_url" />
+        <script type="text/javascript" src="${ckeditor_url}"><jsp:text/></script>
+        <script type="text/javascript" src="${ckeditor_jquery_url}"><jsp:text/></script>
 
-    
-    <c:set var="userLocale">
-        <c:set var="plocale">${pageContext.response.locale}</c:set>
-        <c:out value="${fn:replace(plocale, '_', '-')}" default="en" />
-    </c:set>
+        <!-- jqGrid -->
+        <spring:url value="/resources/jqgrid/css/ui.jqgrid.css" var="jqgrid_css" />
+        <spring:url value="/resources/jqgrid/js/i18n/grid.locale-en.js"
+                    var="jqgrid_locale_url" />
+        <spring:url value="/resources/jqgrid/js/jquery.jqGrid.min.js" var="jqgrid_url" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${jqgrid_css}" />
+        <script type="text/javascript" src="${jqgrid_locale_url}"><jsp:text/></script>
+        <script type="text/javascript" src="${jqgrid_url}"><jsp:text/></script>
 
-    
-    <spring:message code="application_name" var="app_name" htmlEscape="false"/>
-    <title><spring:message code="welcome_h3" arguments="${app_name}" /></title>
-</head>
+        <!-- Get the user locale from the page context (it was set by Spring MVC's locale resolver) -->
+        <c:set var="userLocale">
+            <c:set var="plocale">${pageContext.response.locale}</c:set>
+            <c:out value="${fn:replace(plocale, '_', '-')}" default="en" />
+        </c:set>
 
-<body>
-<div id="headerWrapper">
-    <tiles:insertAttribute name="header" ignore="true" />
-</div>
-<div id="body">
-    <tiles:insertAttribute name="menu" ignore="true" />
-    <div id="main">
-        <tiles:insertAttribute name="body"/>
-        <tiles:insertAttribute name="footer" ignore="true"/>
-    </div>
-</div>
-</body>
+        <spring:message code="application_name" var="app_name" htmlEscape="false"/>
+        <title><spring:message code="welcome_h3" arguments="${app_name}" /></title>
+    </head>
+
+    <body>
+        <div id="headerWrapper">
+            <tiles:insertAttribute name="header" ignore="true" />
+        </div>
+        <div id="body">
+            <tiles:insertAttribute name="menu" ignore="true" />
+            <div id="main">
+                <tiles:insertAttribute name="body"/>
+                <tiles:insertAttribute name="footer" ignore="true"/>
+            </div>
+        </div>
+    </body>
 </html>

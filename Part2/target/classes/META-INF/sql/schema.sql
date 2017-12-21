@@ -16,7 +16,6 @@ INSERT INTO BOOK(TITLE,ISBN,PUBLISHER,PRICE,CATEGORY_NAME) VALUES ('Life at the 
 INSERT INTO BOOK(TITLE,ISBN,PUBLISHER,PRICE,CATEGORY_NAME) VALUES ('Irresistible: The Rise of Addictive Technology and the Business of Keeping Us Hooked' ,'1594206643','John Wiley & Sons',6.29,'Adventure');
 INSERT INTO BOOK(TITLE,ISBN,PUBLISHER,PRICE,CATEGORY_NAME) VALUES ('Everything I Never Told You' ,'159420571X','Random House(UK)',17.71,'Science Fiction');
 INSERT INTO BOOK(TITLE,ISBN,PUBLISHER,PRICE,CATEGORY_NAME) VALUES ('Things a Computer Scientist Rarely Talks About' ,'157586326X','Bloomsbury',7.37,'Technology');
-INSERT INTO BOOK(TITLE,ISBN,PUBLISHER,PRICE,CATEGORY_NAME) VALUES ('On Guard: Defending Your Faith with Reason and Precision' ,'1434764885','Bloomsbury',3.99,'History');
 INSERT INTO BOOK(TITLE,ISBN,PUBLISHER,PRICE,CATEGORY_NAME) VALUES ('The Black Swan: The Impact of the Highly Improbable' ,'1400063515','Faber Alliance',5.19,'Romance');
 INSERT INTO BOOK(TITLE,ISBN,PUBLISHER,PRICE,CATEGORY_NAME) VALUES ('The Language of God: A Scientist Presents Evidence for Belief' ,'0743286391','Simon & Schuster',23.45,'Drama');
 INSERT INTO BOOK(TITLE,ISBN,PUBLISHER,PRICE,CATEGORY_NAME) VALUES ('The Four: The Hidden DNA of Amazon, Apple, Facebook, and Google' ,'0735213658','Egmont',6.33,'Adventure');

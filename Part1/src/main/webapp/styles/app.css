@@ -6,7 +6,7 @@ div#header{
   
     width: 300px;
 
-    border-bottom: 3px solid #AAA;
+    border-bottom: 1px solid #AAA;
     border-bottom-right-radius: 20px;
     padding-left: 20px;
 }
@@ -53,9 +53,7 @@ div#footer{
     color: #AAA;
     font-family: Arial, Helvetica, sans-serif;
     padding: 2px; 
-
 }
-
 
 div#menucontainer{
     width: 100%;
@@ -81,9 +79,7 @@ div#menu span, div#menu a {
 
 div#menu a {
     margin-left:20px;
-
-    padding:10px;
-    
+    padding:10px;    
     border-right: #FF7200 solid 1px;
     border-left: #FF7200 solid 1px;
 
@@ -100,7 +96,7 @@ div#menu a:hover {
 
 }
 div#menu span{
-    /* border-right: #CCC solid 1px; */
+    
     margin-right: 5px;
     padding-right: 10px;
     font-family: sans-serif;
