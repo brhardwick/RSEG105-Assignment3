@@ -9,11 +9,6 @@
         <param-value>/WEB-INF/spring/root-context.xml</param-value>
     </context-param>
 
-    <!-- Spring's DelegatingFilterProxy provides the link between web.xml and the application context.
-         It allows the application to use the FilterChainProxy named "springSecurityFilterChain".
-         The default Spring implementation provide LogoutFilter, UsernamePasswordAuthenticationFilter
-         and other useful security filter. See details in Addendum A of the handouts.
-     -->
      <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

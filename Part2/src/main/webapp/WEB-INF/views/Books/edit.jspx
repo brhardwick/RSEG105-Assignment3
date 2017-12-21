@@ -13,7 +13,7 @@
     <spring:message code="label_Book_category" var="labelBookCategory" />
     <spring:eval expression="book.id == null ? labelBookNew:labelBookUpdate" var="formTitle" />
     <div id="BookInfo">
-        <h1 id="title">${formTitle}</h1>
+
         <form:form modelAttribute="book" id="BookUpdateForm" method="post" enctype="multipart/form-data">
             <c:if test="${not empty message}">
                 <div id="message" class="${message.type}">
@@ -32,6 +32,7 @@
                 </div>
 
             </c:if>
+            <h1 id="title">${formTitle}</h1>
             <div id="showBody">
                 <div class="panel">
                     <div class="panelHeader">

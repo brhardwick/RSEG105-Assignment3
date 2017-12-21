@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 import javax.validation.Valid;
 
 import com.google.common.collect.Lists;
@@ -29,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import rseg105.project3.part2.domain.Book;
-import rseg105.project3.part2.domain.Message;
+import rseg105.project3.part2.model.Message;
 import rseg105.project3.part2.service.BookService;
 import rseg105.project3.part2.web.form.Pagination;
 import rseg105.project3.part2.web.util.UrlUtil;
@@ -97,8 +96,8 @@ public class BookController {
     @RequestMapping(params = "form", method = RequestMethod.POST)
     public String create(@Valid Book book, BindingResult bindingResult, Model uiModel, 
 		HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, 
-		Locale locale, @RequestParam(value="file", required=false) Part file) {
-        logger.info("Creating Book");
+		Locale locale) {
+
         if (bindingResult.hasErrors()) {
             
             uiModel.addAttribute("message", new Message("error",
@@ -109,8 +108,6 @@ public class BookController {
         uiModel.asMap().clear();
         redirectAttributes.addFlashAttribute("message", new Message("success",
                 messageSource.getMessage("Book_save_success", new Object[]{}, locale)));
-
-        logger.info("Book id: " + book.getId());
 
         BookService.save(book);
         return "redirect:/Books/"  + UrlUtil.encodeUrlPathSegment(book.getId().toString(),

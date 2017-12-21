@@ -1,4 +1,5 @@
 rseg105\project3\part2\web\controller\BookController.class
+rseg105\project3\part2\model\Message.class
 rseg105\project3\part2\service\BookService.class
 rseg105\project3\part2\web\util\UrlUtil.class
 rseg105\project3\part2\web\init\AppInitializer.class
@@ -7,4 +8,3 @@ rseg105\project3\part2\web\form\Pagination.class
 rseg105\project3\part2\service\BookServiceImpl.class
 rseg105\project3\part2\domain\Book.class
 rseg105\project3\part2\repository\BookRepository.class
-rseg105\project3\part2\domain\Message.class

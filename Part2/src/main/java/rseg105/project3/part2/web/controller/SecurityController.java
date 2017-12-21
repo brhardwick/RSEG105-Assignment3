@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Locale;
-import rseg105.project3.part2.domain.*;
+import rseg105.project3.part2.model.*;
 
 @Controller
 @RequestMapping("/security")
